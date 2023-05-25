@@ -657,7 +657,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                     .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lblIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 53, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -673,7 +673,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(btnTampil, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -774,9 +774,9 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
         int a = jTabelHapus.getSelectedRow();
         if (a >= 0) {
-            pohon.delete012(new DataPengeluaran(a));
+            pohon.delete012(pohon.simpDat.get(a));
 //            pohon.delete012(a);
-//            datPen.penyewaList.remove(a);
+            pohon.simpDat.remove(a);
             TampilData("Hapus", null);
             JOptionPane.showMessageDialog(this, "Data Berhasil DiHapus", "Success", JOptionPane.INFORMATION_MESSAGE);
             clrInput("Hapus");
@@ -789,11 +789,8 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 //txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
 
             txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getCatatan());
-            txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getTanggal());
-            txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getWaktu());
-            txtHapusCatatan.setText(node.getData().getCatatan());
-            txtHapusTanggal.setText(node.getData().getTanggal());
-            txtHapusCatatan.setText(node.getData().getWaktu());
+            txtHapusTanggal.setText(pohon.simpDat.get(indexTabel).getTanggal());
+            txtHapusWaktu.setText(pohon.simpDat.get(indexTabel).getWaktu());
             txtHapusPengeluaran.setText(String.valueOf(pohon.simpDat.get(indexTabel).getPengeluaran()));
         }
     }//GEN-LAST:event_jTabelHapusMouseClicked
@@ -956,6 +953,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         if (node != null) {
             inOrderTraverse(node.getLeftNode(), tblModel);
             DataPengeluaran data = node.getData();
+            pohon.simpDat.add(data);
             Object[] rowData = {data.getTanggal(), data.getWaktu(), data.getPengeluaran()};
             tblModel.addRow(rowData);
             inOrderTraverse(node.getRightNode(), tblModel);

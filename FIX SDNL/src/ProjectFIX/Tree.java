@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public class Tree {
 
     private TreeNode root;
-    public ArrayList<DataPengeluaran> simpDat = new ArrayList();
-    public Tree(){};
+    public ArrayList<DataPengeluaran> simpDat;
+    public Tree(){
+        simpDat = new ArrayList();
+    
+    };
 
     public Tree(TreeNode root) {
         this.root = root;
+        simpDat = new ArrayList();
     }
 
     public void insertNode(DataPengeluaran data) {
@@ -46,9 +50,9 @@ public class Tree {
     public TreeNode search(DataPengeluaran search) {
         TreeNode cari = root;
         while (cari != null) {
-            if (((Comparable) search).compareTo(cari.getData()) == 0) {
+            if (cari.getData().getPengeluaran() == search.getPengeluaran()) {
                 return cari;
-            } else if (((Comparable) cari.getData()).compareTo(search) <= 0) {
+            } else if (cari.getData().getPengeluaran() < search.getPengeluaran()) {
                 cari = cari.getRightNode();
 
             } else {
@@ -64,7 +68,7 @@ public class Tree {
         TreeNode parent = node.getParent();
 //        TreeNode current = root;
         boolean cek = false;
-        if (node != null) {
+        if (node != root) {
             if (node.getLeftNode() == null && node.getRightNode() == null) {
                 if (parent.getLeftNode() == node) {
                     parent.setLeftNode(null);
@@ -118,6 +122,7 @@ public class Tree {
             } else {
 //                TreeNode parent = node.getParent();
                 TreeNode sucessor = getSucessor(node);
+                TreeNode predesessor = getPredesessor(node);
                 DataPengeluaran temp;
                 if (sucessor != null) {// cek Sucessor
                     if (sucessor.getRightNode() == null) {
@@ -136,7 +141,25 @@ public class Tree {
                     sucessor = node;
                     sucessor.setData(temp);
                     return true;
-                } else {
+                }else if(predesessor != null){
+                    if(predesessor.getLeftNode() == null){
+                        if(predesessor.getParent()!=node){
+                            predesessor.getParent().setRightNode(null);
+                        }else{
+                            node.setRightNode(null);
+                        }
+                    }else{
+                        if(predesessor.getParent() != node){
+                            predesessor.getParent().setRightNode(predesessor.getLeftNode());
+                            predesessor.getParent().setParent(predesessor.getParent());
+                        }
+                    }
+                    temp = predesessor.getData();
+                    predesessor = node;
+                    predesessor.setData(temp);
+                    return true;
+                }else {
+                    root = null;
                     return false;
                 }
             }
@@ -163,6 +186,14 @@ public class Tree {
         TreeNode bantu = data.getRightNode();
         while (bantu.getLeftNode() != null) {
             bantu = bantu.getLeftNode();
+        }
+        return bantu;
+    }
+    
+    public TreeNode getPredesessor(TreeNode data){
+        TreeNode bantu = data.getLeftNode();
+        while(bantu.getRightNode() != null){
+            bantu = bantu.getRightNode();
         }
         return bantu;
     }
