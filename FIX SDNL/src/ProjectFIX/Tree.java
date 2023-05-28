@@ -15,6 +15,13 @@ public class Tree {
         this.root = root;
         simpDat = new ArrayList();
     }
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
 
     public void insertNode(DataPengeluaran data) {
         TreeNode baru = new TreeNode(data);
@@ -23,7 +30,7 @@ public class Tree {
         } else {
             TreeNode bantu = root;
             while (true) {
-                if (bantu.getData().getPengeluaran() > data.getPengeluaran() ) {
+                if (((Comparable) bantu.getData()).compareTo(data) <= 0) {
                     if (bantu.getRightNode() == null) {
                         bantu.setRightNode(baru);
                         baru.setParent(bantu);
@@ -50,9 +57,9 @@ public class Tree {
     public TreeNode search(DataPengeluaran search) {
         TreeNode cari = root;
         while (cari != null) {
-            if (cari.getData().getPengeluaran() == search.getPengeluaran()) {
+            if (((Comparable) search).compareTo(cari.getData()) == 0) {
                 return cari;
-            } else if (cari.getData().getPengeluaran() < search.getPengeluaran()) {
+            } else if (((Comparable) cari.getData()).compareTo(search) <= 0) {
                 cari = cari.getRightNode();
 
             } else {
@@ -198,11 +205,6 @@ public class Tree {
         return bantu;
     }
     
-    public TreeNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(TreeNode root) {
-        this.root = root;
-    }
+    
+    
 }

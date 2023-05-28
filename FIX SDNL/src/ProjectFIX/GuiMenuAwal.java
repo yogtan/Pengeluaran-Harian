@@ -15,10 +15,9 @@ import javax.swing.table.TableColumnModel;
 
 public class GuiMenuAwal extends javax.swing.JFrame {
 
-//    Data data = new Data();
     Tree pohon;
     TreeNode node;
-    DefaultTableModel tableModel;
+    DefaultTableModel tblModel;
 
     public GuiMenuAwal() {
         node = new TreeNode();
@@ -58,8 +57,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblJudul = new javax.swing.JLabel();
-        lblNoPengeluaran = new javax.swing.JLabel();
-        txtNoPengeluaran = new javax.swing.JTextField();
         panelAwal = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         panelCari = new javax.swing.JPanel();
@@ -77,11 +74,9 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         txtCariPengeluaran = new javax.swing.JTextField();
         lblCariPengeluaran = new javax.swing.JLabel();
         panelHapus = new javax.swing.JPanel();
-        lblHapusPendapatan = new javax.swing.JLabel();
         HapusBtn = new javax.swing.JButton();
         lblHapusTanggal = new javax.swing.JLabel();
         txtHapusPengeluaran = new javax.swing.JTextField();
-        txtHapusPendapatan = new javax.swing.JTextField();
         lblHapusPengeluaran = new javax.swing.JLabel();
         txtHapusTanggal = new javax.swing.JTextField();
         txtHapusWaktu = new javax.swing.JTextField();
@@ -98,8 +93,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         TabelLaporanHarian1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTabelKosong = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btnPengeluaran = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
@@ -128,30 +121,30 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         lblPengeluaran.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPengeluaran.setLabelFor(txtPengeluaran);
         lblPengeluaran.setText("Pengeluaran");
-        panelPengeluaran.add(lblPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
+        panelPengeluaran.add(lblPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
 
         lblTangga.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblTangga.setLabelFor(txtTanggal);
         lblTangga.setText("Tanggal");
         lblTangga.setToolTipText("");
-        panelPengeluaran.add(lblTangga, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        panelPengeluaran.add(lblTangga, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         lblWaktu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblWaktu.setLabelFor(txtWaktu);
         lblWaktu.setText("Waktu");
-        panelPengeluaran.add(lblWaktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        panelPengeluaran.add(lblWaktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         lblCatatan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCatatan.setLabelFor(txtCatatan);
         lblCatatan.setText("Catatan");
-        panelPengeluaran.add(lblCatatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        panelPengeluaran.add(lblCatatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         txtPengeluaran.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPengeluaranFocusLost(evt);
             }
         });
-        panelPengeluaran.add(txtPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 380, -1));
+        panelPengeluaran.add(txtPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 380, -1));
 
         txtTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -163,15 +156,15 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 txtTanggalActionPerformed(evt);
             }
         });
-        panelPengeluaran.add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 380, -1));
-        panelPengeluaran.add(txtWaktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 380, -1));
+        panelPengeluaran.add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 380, -1));
+        panelPengeluaran.add(txtWaktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 380, -1));
 
         txtCatatan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCatatanFocusLost(evt);
             }
         });
-        panelPengeluaran.add(txtCatatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 380, -1));
+        panelPengeluaran.add(txtCatatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 380, -1));
 
         btnInputPengeluaran.setBackground(new java.awt.Color(255, 255, 255));
         btnInputPengeluaran.setForeground(new java.awt.Color(0, 153, 0));
@@ -181,7 +174,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 btnInputPengeluaranActionPerformed(evt);
             }
         });
-        panelPengeluaran.add(btnInputPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 75, -1));
+        panelPengeluaran.add(btnInputPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 75, -1));
 
         btnReset.setBackground(new java.awt.Color(255, 255, 255));
         btnReset.setForeground(new java.awt.Color(204, 153, 0));
@@ -191,7 +184,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 btnResetActionPerformed(evt);
             }
         });
-        panelPengeluaran.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 75, -1));
+        panelPengeluaran.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 75, -1));
 
         jPanel1.setBackground(new java.awt.Color(90, 90, 205));
         jPanel1.setForeground(new java.awt.Color(23, 65, 127));
@@ -220,18 +213,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         );
 
         panelPengeluaran.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 80));
-
-        lblNoPengeluaran.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblNoPengeluaran.setLabelFor(txtPengeluaran);
-        lblNoPengeluaran.setText("No. Pengeluaran");
-        panelPengeluaran.add(lblNoPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 20));
-
-        txtNoPengeluaran.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNoPengeluaranFocusLost(evt);
-            }
-        });
-        panelPengeluaran.add(txtNoPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 380, -1));
 
         panelAwal.setBackground(new java.awt.Color(255, 255, 255));
         panelAwal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -271,7 +252,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
         lblCari.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCari.setLabelFor(txtCariCatatan);
-        lblCari.setText("Cari Catatan");
+        lblCari.setText("Cari Pengeluaran");
         panelCari.add(lblCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, -1));
 
         lblCariTanggal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -333,7 +314,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         panelCari.add(txtCariPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 290, -1));
 
         lblCariPengeluaran.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCariPengeluaran.setLabelFor(txtHapusPendapatan);
         lblCariPengeluaran.setText("Pengeluaran");
         panelCari.add(lblCariPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 120, -1));
 
@@ -342,12 +322,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         panelHapus.setMinimumSize(new java.awt.Dimension(533, 356));
         panelHapus.setPreferredSize(new java.awt.Dimension(533, 356));
         panelHapus.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblHapusPendapatan.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblHapusPendapatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblHapusPendapatan.setLabelFor(txtHapusPendapatan);
-        lblHapusPendapatan.setText("Pendapatan");
-        panelHapus.add(lblHapusPendapatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, 20));
 
         HapusBtn.setBackground(new java.awt.Color(255, 255, 255));
         HapusBtn.setForeground(new java.awt.Color(0, 204, 0));
@@ -370,15 +344,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         txtHapusPengeluaran.setEditable(false);
         txtHapusPengeluaran.setBackground(new java.awt.Color(255, 255, 255));
         panelHapus.add(txtHapusPengeluaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 370, -1));
-
-        txtHapusPendapatan.setEditable(false);
-        txtHapusPendapatan.setBackground(new java.awt.Color(255, 255, 255));
-        txtHapusPendapatan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHapusPendapatanActionPerformed(evt);
-            }
-        });
-        panelHapus.add(txtHapusPendapatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 189, 370, -1));
 
         lblHapusPengeluaran.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblHapusPengeluaran.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -410,7 +375,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Tanggal", "Waktu", "Pendapatan", "Pengeluaran"
+                "Tanggal", "Waktu", "Pengeluaran"
             }
         ));
         jTabelHapus.setMaximumSize(new java.awt.Dimension(20, 256));
@@ -466,13 +431,13 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
         TabelLaporanHarian1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tanggal", "Waktu", "Pendapatan", "Pengeluaran"
+                "Tanggal", "Waktu", "Pengeluaran"
             }
         ));
         jScrollPane2.setViewportView(TabelLaporanHarian1);
@@ -499,19 +464,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTabelKosong.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Total Pendapatan", "Total Pengeluaran", "Total Saldo"
-            }
-        ));
-        jScrollPane3.setViewportView(jTabelKosong);
-
         javax.swing.GroupLayout panelTampilLayout = new javax.swing.GroupLayout(panelTampil);
         panelTampil.setLayout(panelTampilLayout);
         panelTampilLayout.setHorizontalGroup(
@@ -519,9 +471,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelTampilLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(panelTampilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         panelTampilLayout.setVerticalGroup(
@@ -530,9 +480,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jLayeredPane3.setLayer(panelPengeluaran, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -673,7 +621,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(btnTampil, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -752,48 +700,19 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
     private void btnInputPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputPengeluaranActionPerformed
 
-        String vNoPengeluaran = txtNoPengeluaran.getText();
+//        String vNoPengeluaran = txtNoPengeluaran.getText();
         String vCatatan = txtCatatan.getText();
         String vTanggal = txtTanggal.getText();
         String vWaktu = txtWaktu.getText();
-        int vPengeluaran = Integer.parseInt(txtPengeluaran.getText());
-        pohon.insertNode(new DataPengeluaran(vNoPengeluaran, vTanggal, vWaktu, vCatatan, vPengeluaran));
+        String vPengeluaran = txtPengeluaran.getText();
 
-        JOptionPane.showMessageDialog(null, "PENGELUARAN DENGAN  :"
-                + "\nNo Pengeluaran          : " + vNoPengeluaran
-                + "\nTanggal                 : " + vTanggal
-                + "\nWaktu                   : " + vWaktu
-                + "\nCatatan                 : " + vCatatan
-                + "\n\nTelah Masuk Ke dalam Laporan Pengeluaran");
+        DataPengeluaran data = new DataPengeluaran(vTanggal, vWaktu, vCatatan, vPengeluaran);
+        pohon.insertNode(data);
+        JOptionPane.showMessageDialog(this, "Data Berhasil Ditambah", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         clrInput("Tambah");
 
     }//GEN-LAST:event_btnInputPengeluaranActionPerformed
-
-    private void HapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusBtnActionPerformed
-
-        int a = jTabelHapus.getSelectedRow();
-        if (a >= 0) {
-            pohon.delete012(pohon.simpDat.get(a));
-//            pohon.delete012(a);
-            pohon.simpDat.remove(a);
-            TampilData("Hapus", null);
-            JOptionPane.showMessageDialog(this, "Data Berhasil DiHapus", "Success", JOptionPane.INFORMATION_MESSAGE);
-            clrInput("Hapus");
-        }
-    }//GEN-LAST:event_HapusBtnActionPerformed
-
-    private void jTabelHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelHapusMouseClicked
-        if (jTabelHapus.getSelectedRow() >= 0) {
-            int indexTabel = jTabelHapus.getSelectedRow();
-//txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
-
-            txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getCatatan());
-            txtHapusTanggal.setText(pohon.simpDat.get(indexTabel).getTanggal());
-            txtHapusWaktu.setText(pohon.simpDat.get(indexTabel).getWaktu());
-            txtHapusPengeluaran.setText(String.valueOf(pohon.simpDat.get(indexTabel).getPengeluaran()));
-        }
-    }//GEN-LAST:event_jTabelHapusMouseClicked
 
     private void txtPengeluaranFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPengeluaranFocusLost
         if (txtPengeluaran.getText().equals("")) {
@@ -837,35 +756,20 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_lblIconMouseClicked
 
-    private void txtHapusPendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHapusPendapatanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHapusPendapatanActionPerformed
-
     private void txtTanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTanggalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTanggalActionPerformed
-
-    private void txtNoPengeluaranFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNoPengeluaranFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoPengeluaranFocusLost
 
     private void txtCariPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariPengeluaranActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariPengeluaranActionPerformed
 
     private void txtCariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusLost
-        //        if(rbNomorKamar.isSelected()){
-        //            if(!txtCari.getText().matches("[0-9]+")){
-        //                JOptionPane.showMessageDialog(this, "Data Harus Berupa Angka");
-        //                clrInput("Cari");
-        //            }
-        //        }else{
-        //            if(txtCari.getText().matches(".*\\d.*")){
-        //                JOptionPane.showMessageDialog(this, "Nama Tidak Boleh Mengandung Angka");
-        //                clrInput("Cari");
-        //            }
-        //
-        //        }
+
+        if (!txtCari.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Pencarian Harus Berupa Angka");
+            clrInput("Cari");
+        }
     }//GEN-LAST:event_txtCariFocusLost
 
     private void btnCari_CariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari_CariActionPerformed
@@ -876,14 +780,40 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             TreeNode hasilPencarian = pohon.search(cariP);
 
             if (hasilPencarian != null) { // Memeriksa apakah data ditemukan dalam pohon
-                JOptionPane.showMessageDialog(this, "Data ditemukan");
+                JOptionPane.showMessageDialog(this, "Data Ditemukan");
             } else {
-                JOptionPane.showMessageDialog(this, "Data tidak ditemukan");
+                JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Harap isi pencarian terlebih dahulu");
         }
     }//GEN-LAST:event_btnCari_CariActionPerformed
+
+    private void jTabelHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelHapusMouseClicked
+        if (jTabelHapus.getSelectedRow() >= 0) {
+            int indexTabel = jTabelHapus.getSelectedRow();
+            //txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
+
+            txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getCatatan());
+            txtHapusTanggal.setText(pohon.simpDat.get(indexTabel).getTanggal());
+            txtHapusWaktu.setText(pohon.simpDat.get(indexTabel).getWaktu());
+            txtHapusPengeluaran.setText(pohon.simpDat.get(indexTabel).getPengeluaran());
+            //            txtHapusPengeluaran.setText(String.valueOf(pohon.simpDat.get(indexTabel).getPengeluaran()));
+        }
+    }//GEN-LAST:event_jTabelHapusMouseClicked
+
+    private void HapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusBtnActionPerformed
+
+        int a = jTabelHapus.getSelectedRow();
+        if (a >= 0) {
+            pohon.delete012(pohon.simpDat.get(a));
+            //            pohon.delete012(a);
+            pohon.simpDat.remove(a);
+            TampilData("Hapus", null);
+            JOptionPane.showMessageDialog(this, "Data Berhasil DiHapus", "Success", JOptionPane.INFORMATION_MESSAGE);
+            clrInput("Hapus");
+        }
+    }//GEN-LAST:event_HapusBtnActionPerformed
 
     public void hideComponent() {
         panelHapus.setVisible(false);
@@ -904,7 +834,8 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             txtHapusWaktu.setText("");
             txtHapusPengeluaran.setText("");
             txtHapusTanggal.setText("");
-            txtHapusPendapatan.setText("");
+            txtCatatan.setText("");
+//            txtHapusPendapatan.setText("");
         } else if (jenis.equals("Cari")) {
             txtCari.setText("");
         }
@@ -912,39 +843,41 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     }
 
     public void TampilDataCari(int i) {
-//     DataPengeluaran pengeluaran1 = new DataGuru(NIP);
-        txtCariCatatan.setText(node.getData().getCatatan());
-        txtCariTanggal.setText(node.getData().getTanggal());
-        txtCariCatatan.setText(node.getData().getWaktu());
-        txtCariPengeluaran.setText(String.valueOf(node.getData().getPengeluaran()));
-
+        txtHapusCatatan.setText(pohon.simpDat.get(i).getCatatan());
+        txtHapusTanggal.setText(pohon.simpDat.get(i).getTanggal());
+        txtHapusWaktu.setText(pohon.simpDat.get(i).getWaktu());
+        txtHapusPengeluaran.setText(String.valueOf(pohon.simpDat.get(i).getPengeluaran()));
     }
 
     public void tambahDataPengeluaran() {
 
-        DataPengeluaran data = new DataPengeluaran("1", "13 Maret 2023", "10 Pagi", "Nasi Uduk", 20000);
-        TreeNode node = new TreeNode(data);
-        Tree pohon = new Tree(node);
-        DataPengeluaran data1 = new DataPengeluaran("2", "13 Maret 2023", "10 Pagi", "Nasi Uduk", 20000);
+        DataPengeluaran data1 = new DataPengeluaran("13 Mei 2023", "9 Pagi", "Yogtan", "999999");
+        DataPengeluaran data2 = new DataPengeluaran("13 Mei 2023", "12 Pagi", "Nasi Padang", "120000");
+        DataPengeluaran data3 = new DataPengeluaran("13 Mei 2023", "10 Pagi", "Nasi Ayam", "20000");
+
         pohon.insertNode(data1);
-        DataPengeluaran data2 = new DataPengeluaran("3", "13 Maret 2023", "10 Pagi", "Nasi Uduk", 20000);
         pohon.insertNode(data2);
+        pohon.insertNode(data3);
 
     }
 
-// Metode untuk menampilkan data dalam tabel
     public void TampilData(String jenis, Tree tree) {
-        String[] namaKolom = {"Tanggal", "Waktu", "Pengeluaran"};
-        DefaultTableModel tblModel = new DefaultTableModel(namaKolom, 0);
+        String[] namaKolom = {"Tanggal", "Waktu", "Catatan", "Pengeluaran"};
+        tblModel = new DefaultTableModel(namaKolom, 0) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        TabelLaporanHarian1.revalidate();
+        TabelLaporanHarian1.repaint();
 
         // Panggil metode traverseTree dengan root node pohon dan tblModel
         inOrderTraverse(pohon.getRoot(), tblModel);
         if (jenis.equals("Tampil")) {
             TabelLaporanHarian1.setModel(tblModel);
-            TabelLaporanHarian1.revalidate();
         } else if (jenis.equals("Hapus")) {
             jTabelHapus.setModel(tblModel);
-            jTabelHapus.revalidate();
         }
     }
 
@@ -954,12 +887,13 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             inOrderTraverse(node.getLeftNode(), tblModel);
             DataPengeluaran data = node.getData();
             pohon.simpDat.add(data);
-            Object[] rowData = {data.getTanggal(), data.getWaktu(), data.getPengeluaran()};
+            Object[] rowData = {data.getTanggal(), data.getWaktu(), data.getCatatan(), data.getPengeluaran()};
             tblModel.addRow(rowData);
             inOrderTraverse(node.getRightNode(), tblModel);
         }
     }
 
+// Metode untuk menghapus data dari tabel berdasarkan indeks baris
     public Boolean cek(Object cek, JTextField txt) {
         try {
             if (txt == txtCari) {
@@ -1053,10 +987,8 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTabelHapus;
-    private javax.swing.JTable jTabelKosong;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lblCari;
     private javax.swing.JLabel lblCariCatatan;
@@ -1065,13 +997,11 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     private javax.swing.JLabel lblCariWaktu;
     private javax.swing.JLabel lblCatatan;
     private javax.swing.JLabel lblHapusCatatan;
-    private javax.swing.JLabel lblHapusPendapatan;
     private javax.swing.JLabel lblHapusPengeluaran;
     private javax.swing.JLabel lblHapusTanggal;
     private javax.swing.JLabel lblHapusWaktu;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblJudul;
-    private javax.swing.JLabel lblNoPengeluaran;
     private javax.swing.JLabel lblPengeluaran;
     private javax.swing.JLabel lblTangga;
     private javax.swing.JLabel lblWaktu;
@@ -1087,11 +1017,9 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     private javax.swing.JTextField txtCariWaktu;
     private javax.swing.JTextField txtCatatan;
     private javax.swing.JTextField txtHapusCatatan;
-    private javax.swing.JTextField txtHapusPendapatan;
     private javax.swing.JTextField txtHapusPengeluaran;
     private javax.swing.JTextField txtHapusTanggal;
     private javax.swing.JTextField txtHapusWaktu;
-    private javax.swing.JTextField txtNoPengeluaran;
     private javax.swing.JTextField txtPengeluaran;
     private javax.swing.JTextField txtTanggal;
     private javax.swing.JTextField txtWaktu;

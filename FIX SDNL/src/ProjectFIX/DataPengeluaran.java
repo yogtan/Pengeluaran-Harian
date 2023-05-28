@@ -2,45 +2,28 @@ package ProjectFIX;
 
 public class DataPengeluaran implements Comparable {
 
-    private String NP;
     private String Tanggal;
     private String Waktu;
     private String Catatan;
-    private int Pengeluaran;
+    private String Pengeluaran;
 
-    public DataPengeluaran(int Pengeluaran) {
+    public DataPengeluaran(String Pengeluaran) {
         this.Pengeluaran = Pengeluaran;
     }
 
-    public DataPengeluaran(String NP) {
-        this.NP = NP;
+    public DataPengeluaran(String Tanggal, String Waktu, String Catatan) {
+        this.Tanggal = Tanggal;
+        this.Waktu = Waktu;
+        this.Catatan = Catatan;
+
     }
 
+    public DataPengeluaran(String Tanggal, String Waktu, String Catatan, String Pengeluaran) {
 
-    public DataPengeluaran(String Tanggal, String Waktu, String Catatan, int Pengeluaran) {
         this.Tanggal = Tanggal;
         this.Waktu = Waktu;
         this.Catatan = Catatan;
         this.Pengeluaran = Pengeluaran;
-    }
-
-    public DataPengeluaran(String NP, String Tanggal, String Waktu, String Catatan, int Pengeluaran) {
-        this.NP = NP;
-        this.Tanggal = Tanggal;
-        this.Waktu = Waktu;
-        this.Catatan = Catatan;
-        this.Pengeluaran = Pengeluaran;
-    }
-
-  
-
-
-    public String getNP() {
-        return NP;
-    }
-
-    public void setNP(String NP) {
-        this.NP = NP;
     }
 
     public String getTanggal() {
@@ -67,17 +50,20 @@ public class DataPengeluaran implements Comparable {
         this.Catatan = Catatan;
     }
 
-    public int getPengeluaran() {
+    public String getPengeluaran() {
         return Pengeluaran;
     }
 
-    public void setPengeluaran(int Pengeluaran) {
+    public void setPengeluaran(String FPengeluaran) {
         this.Pengeluaran = Pengeluaran;
     }
 
     @Override
     public int compareTo(Object o) {
-       return NP.compareTo(((DataPengeluaran)o).getNP());
-
+        try {
+            return this.Pengeluaran.compareTo(((DataPengeluaran) o).Pengeluaran);
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported Comparation.");
+        }
     }
 }
