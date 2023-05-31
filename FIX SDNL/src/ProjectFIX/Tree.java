@@ -137,6 +137,7 @@ public class Tree {
                     if (sucessor.getRightNode() == null) {
                         if (sucessor.getParent() != node) {
                             sucessor.getParent().setLeftNode(null);
+                            sucessor.setParent(null);
                         } else {
                             node.setRightNode(null);
                         }
@@ -152,8 +153,9 @@ public class Tree {
                     return true;
                 }else if(predesessor != null){
                     if(predesessor.getLeftNode() == null){
-                        if(predesessor.getParent()!=node){
+                        if(predesessor.getParent()!= node){
                             predesessor.getParent().setRightNode(null);
+                            predesessor.setParent(null);
                         }else{
                             node.setRightNode(null);
                         }
@@ -161,11 +163,15 @@ public class Tree {
                         if(predesessor.getParent() != node){
                             predesessor.getParent().setRightNode(predesessor.getLeftNode());
                             predesessor.getLeftNode().setParent(predesessor.getParent());
+                        }else{
+                            
                         }
                     }
-                    temp = predesessor.getData();
-                    predesessor = node;
-                    predesessor.setData(temp);
+                    
+                    root = predesessor;
+//                    temp = predesessor.getData();
+//                    predesessor = node;
+//                    predesessor.setData(temp);
                     return true;
                 }else {
                     root = null;
