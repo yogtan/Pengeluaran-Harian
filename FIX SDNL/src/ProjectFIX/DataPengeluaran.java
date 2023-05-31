@@ -5,9 +5,9 @@ public class DataPengeluaran implements Comparable {
     private String Tanggal;
     private String Waktu;
     private String Catatan;
-    private String Pengeluaran;
+    private int Pengeluaran;
 
-    public DataPengeluaran(String Pengeluaran) {
+    public DataPengeluaran(int Pengeluaran) {
         this.Pengeluaran = Pengeluaran;
     }
 
@@ -18,7 +18,7 @@ public class DataPengeluaran implements Comparable {
 
     }
 
-    public DataPengeluaran(String Tanggal, String Waktu, String Catatan, String Pengeluaran) {
+    public DataPengeluaran(String Tanggal, String Waktu, String Catatan, int Pengeluaran) {
 
         this.Tanggal = Tanggal;
         this.Waktu = Waktu;
@@ -50,7 +50,7 @@ public class DataPengeluaran implements Comparable {
         this.Catatan = Catatan;
     }
 
-    public String getPengeluaran() {
+    public int getPengeluaran() {
         return Pengeluaran;
     }
 
@@ -61,7 +61,7 @@ public class DataPengeluaran implements Comparable {
     @Override
     public int compareTo(Object o) {
         try {
-            return this.Pengeluaran.compareTo(((DataPengeluaran) o).Pengeluaran);
+            return this.Pengeluaran;
         } catch (Exception ex) {
             throw new UnsupportedOperationException("Not supported Comparation.");
         }

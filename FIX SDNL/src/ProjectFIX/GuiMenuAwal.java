@@ -18,6 +18,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     Tree pohon;
     TreeNode node;
     DefaultTableModel tblModel;
+    ArrayList<DataPengeluaran> dat;
 
     public GuiMenuAwal() {
         node = new TreeNode();
@@ -699,7 +700,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         String vCatatan = txtCatatan.getText();
         String vTanggal = txtTanggal.getText();
         String vWaktu = txtWaktu.getText();
-        String vPengeluaran = txtPengeluaran.getText();
+        int vPengeluaran = Integer.parseInt(txtPengeluaran.getText());
 
         DataPengeluaran data = new DataPengeluaran(vTanggal, vWaktu, vCatatan, vPengeluaran);
         pohon.insertNode(data);
@@ -769,7 +770,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
     private void btnCari_CariActionPerformed(java.awt.event.ActionEvent evt) {
         if (!txtCari.getText().isEmpty()) { // Memeriksa apakah TextBox pencarian tidak kosong
-            String cari = txtCari.getText();
+            int cari = Integer.parseInt(txtCari.getText());
 
             DataPengeluaran cariP = new DataPengeluaran(cari);
             TreeNode hasilPencarian = pohon.search(cariP);
@@ -789,10 +790,10 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             int indexTabel = jTabelHapus.getSelectedRow();
             //txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
 
-            txtHapusCatatan.setText(pohon.simpDat.get(indexTabel).getCatatan());
-            txtHapusTanggal.setText(pohon.simpDat.get(indexTabel).getTanggal());
-            txtHapusWaktu.setText(pohon.simpDat.get(indexTabel).getWaktu());
-            txtHapusPengeluaran.setText(pohon.simpDat.get(indexTabel).getPengeluaran());
+            txtHapusCatatan.setText(dat.get(indexTabel).getCatatan());
+            txtHapusTanggal.setText(dat.get(indexTabel).getTanggal());
+            txtHapusWaktu.setText(dat.get(indexTabel).getWaktu());
+            txtHapusPengeluaran.setText(Integer.toString(dat.get(indexTabel).getPengeluaran()));
 
         }
     }
@@ -800,10 +801,10 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     private void HapusBtnActionPerformed(java.awt.event.ActionEvent evt) {
         int a = jTabelHapus.getSelectedRow();
         if (a >= 0) {
-            System.out.println(a);
-            pohon.simpDat.remove(a);
-            DataPengeluaran selectedData = pohon.simpDat.get(a);
+            System.out.println("Data : "+ pohon.getRoot().getData().getPengeluaran());
+            DataPengeluaran selectedData = dat.get(a);
             pohon.delete012(selectedData);
+            dat.remove(a);
             TampilData("Hapus");
             JOptionPane.showMessageDialog(this, "Data Berhasil DiHapus", "Success", JOptionPane.INFORMATION_MESSAGE);
             clrInput("Hapus");
@@ -846,9 +847,9 @@ public class GuiMenuAwal extends javax.swing.JFrame {
 
     public void tambahDataPengeluaran() {
 
-        DataPengeluaran data1 = new DataPengeluaran("13 Mei 2023", "9 Pagi", "Yogtan", "999999");
-        DataPengeluaran data2 = new DataPengeluaran("13 Mei 2023", "12 Pagi", "Nasi Padang", "120000");
-        DataPengeluaran data3 = new DataPengeluaran("13 Mei 2023", "10 Pagi", "Nasi Ayam", "20000");
+        DataPengeluaran data1 = new DataPengeluaran("13 Mei 2023", "9 Pagi", "Yogtan", 999999);
+        DataPengeluaran data2 = new DataPengeluaran("13 Mei 2023", "12 Pagi", "Nasi Padang", 120000);
+        DataPengeluaran data3 = new DataPengeluaran("13 Mei 2023", "10 Pagi", "Nasi Ayam", 20000);
 
         pohon.insertNode(data1);
         pohon.insertNode(data2);
@@ -866,9 +867,10 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         };
         TabelLaporanHarian1.revalidate();
         TabelLaporanHarian1.repaint();
+        dat = new ArrayList();
 
         // Panggil metode traverseTree dengan root node pohon dan tblModel
-        inOrderTraverse(pohon.getRoot(), tblModel);
+        inOrderTraverse(pohon.getRoot(), tblModel, dat);
         if (jenis.equals("Tampil")) {
             TabelLaporanHarian1.setModel(tblModel);
         } else if (jenis.equals("Hapus")) {
@@ -877,14 +879,13 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     }
 
     // Metode traverseTree untuk mengisi data dari pohon ke dalam tabel
-    private void inOrderTraverse(TreeNode node, DefaultTableModel tblModel) {
+    private void inOrderTraverse(TreeNode node, DefaultTableModel tblModel, ArrayList<DataPengeluaran> dat) {
         if (node != null) {
-            inOrderTraverse(node.getLeftNode(), tblModel);
-            DataPengeluaran data = node.getData();
-            pohon.simpDat.add(data);
-            Object[] rowData = {data.getTanggal(), data.getWaktu(), data.getCatatan(), data.getPengeluaran()};
+            inOrderTraverse(node.getLeftNode(), tblModel, dat);
+            dat.add(node.getData());
+            Object[] rowData = {node.getData().getTanggal(), node.getData().getWaktu(), node.getData().getCatatan(), node.getData().getPengeluaran()};
             tblModel.addRow(rowData);
-            inOrderTraverse(node.getRightNode(), tblModel);
+            inOrderTraverse(node.getRightNode(), tblModel, dat);
         }
     }
 
