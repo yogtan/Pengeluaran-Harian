@@ -4,11 +4,7 @@
  */
 package SDNLFIX;
 
-//import BST.*;
-//import ProjectSDNL.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +12,6 @@ import javax.swing.table.TableColumnModel;
 
 public class GuiMenuAwal extends javax.swing.JFrame {
 
-//    Data data = new Data();
     Tree pohon;
     TreeNode node;
     DefaultTableModel tableModel;
@@ -241,6 +236,11 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         btnCari_Cari.setMaximumSize(new java.awt.Dimension(65, 25));
         btnCari_Cari.setMinimumSize(new java.awt.Dimension(65, 25));
         btnCari_Cari.setPreferredSize(new java.awt.Dimension(65, 25));
+        btnCari_Cari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                btnCari_CariFocusLost(evt);
+            }
+        });
         btnCari_Cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCari_CariActionPerformed(evt);
@@ -659,20 +659,15 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         panelTampil.setVisible(false);
         panelPengeluaran.setVisible(true);
         panelAwal.setVisible(false);
-
-
     }//GEN-LAST:event_btnPengeluaranActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
 
         panelHapus.setVisible(false);
-
         panelTampil.setVisible(false);
         panelCari.setVisible(true);
         panelAwal.setVisible(false);
         panelPengeluaran.setVisible(false);
-
-
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnTampilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilActionPerformed
@@ -680,7 +675,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         panelHapus.setVisible(false);
         panelPengeluaran.setVisible(false);
         panelCari.setVisible(false);
-
         panelTampil.setVisible(true);
         TampilData("Tampil");
 
@@ -710,10 +704,10 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         if (a >= 0) {
             System.out.println("Data : " + pohon.getRoot().getData().getPengeluaran());
             DataPengeluaran selectedData = dat.get(a);
-            pohon.delete012(selectedData);
+            pohon.delete(selectedData);
             dat.remove(a);
-            TampilData("Hapus");
             JOptionPane.showMessageDialog(this, "Data Berhasil DiHapus", "Success", JOptionPane.INFORMATION_MESSAGE);
+            TampilData("Hapus");
             clrInput("Hapus");
         }
     }//GEN-LAST:event_HapusBtnActionPerformed
@@ -721,7 +715,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     private void jTabelHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelHapusMouseClicked
         if (jTabelHapus.getSelectedRow() >= 0) {
             int indexTabel = jTabelHapus.getSelectedRow();
-            //txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
 
             txtHapusCatatan.setText(dat.get(indexTabel).getCatatan());
             txtHapusTanggal.setText(dat.get(indexTabel).getTanggal());
@@ -778,25 +771,6 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void jTabelHapusMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelHapusMouseReleased
-//        if (jTabelHapus.getSelectedRow() >= 0) {
-//            int indexTabel = jTabelHapus.getSelectedRow();
-//txtHapusPendapatan.setText(Integer.toString(datPen.sewa.get(indexTabel).nokost));
-
-//            txtHapusPengeluaran.setText(String.valueOf(pohon.simpDat.get(indexTabel).getPengeluaran()));
-//        int selectedRow = jTabelHapus.getSelectedRow();
-//        if (selectedRow >= 0) {
-//            List<TreeNode> nodeList = pohon.traverseInOrder();
-//            if (selectedRow < nodeList.size()) {
-//                TreeNode selectedNode = nodeList.get(selectedRow);
-//                DataPengeluaran selected = (DataPengeluaran) selectedNode.getData();
-//                txtHapusCatatan.setText(selected.getCatatan());
-//                txtHapusTanggal.setText(selected.getTanggal());
-//                txtHapusWaktu.setText(selected.getWaktu());
-//                txtHapusPengeluaran.setText(Integer.toString(selected.getPengeluaran()));
-//                
-//txtHapusPengeluaran.setText(selected.getPengeluaran());
-//            }
-//        }
 
     }//GEN-LAST:event_jTabelHapusMouseReleased
 
@@ -805,7 +779,8 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtHapusTanggalActionPerformed
 
     private void btnCari_CariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari_CariActionPerformed
-        if (!txtCari.getText().isEmpty()) { // Memeriksa apakah TextBox pencarian tidak kosong
+        // Cek textbox kosong dan simpan data inputan
+        if (!txtCari.getText().isEmpty()) {
             int cari = Integer.parseInt(txtCari.getText());
 
             DataPengeluaran cariP = new DataPengeluaran(cari);
@@ -824,18 +799,11 @@ public class GuiMenuAwal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCari_CariActionPerformed
 
     private void txtCariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusLost
-        //        if(rbNomorKamar.isSelected()){
-        //            if(!txtCari.getText().matches("[0-9]+")){
-        //                JOptionPane.showMessageDialog(this, "Data Harus Berupa Angka");
-        //                clrInput("Cari");
-        //            }
-        //        }else{
-        //            if(txtCari.getText().matches(".*\\d.*")){
-        //                JOptionPane.showMessageDialog(this, "Nama Tidak Boleh Mengandung Angka");
-        //                clrInput("Cari");
-        //            }
-        //
-        //        }
+        if (txtCari.getText().equals("")) {
+            return;
+        }
+        cek(txtCari.getText(), txtCari);
+
     }//GEN-LAST:event_txtCariFocusLost
 
     private void jTabelCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelCariMouseClicked
@@ -846,6 +814,16 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabelCariMouseReleased
 
+    private void btnCari_CariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnCari_CariFocusLost
+       if (txtCari.getText().equals("")) {
+            return;
+        }
+        cek(txtCari.getText(), txtCari);
+
+    }//GEN-LAST:event_btnCari_CariFocusLost
+
+//    Metode ini untuk hide GUI, jadi hanya panelAwal saja yang ditampilkan
+//    terlebih dahulu
     public void hideComponent() {
         panelHapus.setVisible(false);
         panelPengeluaran.setVisible(false);
@@ -854,6 +832,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         panelTampil.setVisible(false);
 
     }
+//    Hapus isi texbox
 
     private void clrInput(String jenis) {
         if ("Tambah".equals(jenis)) {
@@ -865,7 +844,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
             txtHapusWaktu.setText("");
             txtHapusPengeluaran.setText("");
             txtHapusTanggal.setText("");
-//            txtHapusPendapatan.setText("");
+            txtHapusPengeluaran.setText("");
         } else if (jenis.equals("Cari")) {
             txtCari.setText("");
         }
@@ -888,7 +867,7 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         inOrderTraverse(pohon.getRoot(), tableModel, dat);
 
         if (jenis.equals("Cari")) {
-            int kataKunci = cari; // Ganti dengan kata kunci yang ingin Anda cari
+            int kataKunci = cari;
             DefaultTableModel filteredModel = new DefaultTableModel(namaKolom, 0) {
                 @Override
                 public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -896,15 +875,14 @@ public class GuiMenuAwal extends javax.swing.JFrame {
                 }
             };
 
-            // Loop melalui data yang ditemukan dan tambahkan ke model yang difilter
+            // Loop melalui data yang ditemukan dan tambahkan data difilter
             for (DataPengeluaran data : dat) {
-                // Access the attributes of the DataPengeluaran object
+
                 String catatan = data.getCatatan();
                 int pengeluaran = data.getPengeluaran();
 
-                // Perform your filtering logic here
                 if (pengeluaran == kataKunci) {
-                    // Add the matching data to the filtered model
+
                     Object[] row = {data.getTanggal(), data.getWaktu(), catatan, pengeluaran};
                     filteredModel.addRow(row);
                 }
@@ -958,20 +936,27 @@ public class GuiMenuAwal extends javax.swing.JFrame {
         }
     }
 
-// Metode traverseTree untuk mengisi data dari pohon ke dalam tabel
     public Boolean cek(Object cek, JTextField txt) {
         try {
+
             if (txt == txtCari) {
-                if (!((String) cek).matches(".*\\d.*")) {
-                    txtCari.setText((String) cek);
+                if (((String) cek).matches("[0-9]+")) {
+                    txtCari.setText(((String) cek));
                 } else {
-                    throw new Exception("Nama tidak boleh berisi nomor");
+                    throw new Exception("NIK Hanya Boleh Berisi Angka");
                 }
 
+            } else if (txt == txtPengeluaran) {
+                if (((String) cek).matches("[0-9]+")) {
+                    txtPengeluaran.setText(((String) cek));
+                } else {
+                    throw new Exception("NIK Hanya Boleh Berisi Angka");
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "PERINGATAN", JOptionPane.ERROR_MESSAGE);
         }
+
         return false;
     }
 

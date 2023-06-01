@@ -1,7 +1,5 @@
 package SDNLFIX;
 
-
-
 public class DataPengeluaran implements Comparable {
 
     private String Tanggal;

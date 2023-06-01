@@ -71,7 +71,7 @@ public class Tree {
     }
 
 
-    public boolean delete012(DataPengeluaran data) {
+    public boolean delete(DataPengeluaran data) {
         TreeNode node = search(data);
         TreeNode parent = node.getParent();
 //        TreeNode current = root;
