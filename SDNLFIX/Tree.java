@@ -5,11 +5,7 @@ import java.util.ArrayList;
 
 public class Tree {
 
-<<<<<<< HEAD:Project SDNL/src/Project SDNL/Tree.java
  private TreeNode root;
-=======
-    private TreeNode root;
->>>>>>> e222e60f623cdef09c13854089a1c6c081920ece:FIX SDNL/src/ProjectFIX/Tree.java
     public ArrayList<DataPengeluaran> simpDat;
     public Tree(){
         simpDat = new ArrayList();

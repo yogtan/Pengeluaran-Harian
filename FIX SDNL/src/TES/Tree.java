@@ -1,25 +1,22 @@
-package SDNLFIX;
-
+package TES;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tree {
 
-<<<<<<< HEAD:Project SDNL/src/Project SDNL/Tree.java
- private TreeNode root;
-=======
-    private TreeNode root;
->>>>>>> e222e60f623cdef09c13854089a1c6c081920ece:FIX SDNL/src/ProjectFIX/Tree.java
-    public ArrayList<DataPengeluaran> simpDat;
-    public Tree(){
-        simpDat = new ArrayList();
-    
-    };
+    TreeNode root;
 
-    public Tree(TreeNode root) {
-        this.root = root;
-        simpDat = new ArrayList();
+    public Tree() {
+        this.root = null;
     }
+
+    public Tree(TreeNode rt) {
+        this.root = rt;
+        rt.setLeftNode(null);
+        rt.setRightNode(null);
+    }
+
     public TreeNode getRoot() {
         return root;
     }
@@ -35,7 +32,7 @@ public class Tree {
         } else {
             TreeNode bantu = root;
             while (true) {
-                if (bantu.getData().getPengeluaran() < data.getPengeluaran()) {
+                if (((Comparable) bantu.getData()).compareTo(data) <= 0) {
                     if (bantu.getRightNode() == null) {
                         bantu.setRightNode(baru);
                         baru.setParent(bantu);
@@ -59,28 +56,32 @@ public class Tree {
         }
     }
 
-    public TreeNode search(DataPengeluaran search) {
-        TreeNode cari = root;
-        while (cari != null) {
-            if (search.getPengeluaran() == cari.getData().getPengeluaran()) {
-                return cari;
-            } else if (search.getPengeluaran() > cari.getData().getPengeluaran()) {
-                cari = cari.getRightNode();
-
-            } else {
-                cari = cari.getLeftNode();
+    public TreeNode search(int search) {
+       TreeNode bantu = root;
+        if (root == null) {
+            return null;
+        } else {
+            while (bantu != null) {
+                if (search == bantu.getData().getPengeluaran()) {
+                    return bantu;
+                } else {
+                    if (search > bantu.getData().getPengeluaran()) {
+                        bantu = bantu.getRightNode();
+                    } else {
+                        bantu = bantu.getLeftNode();
+                    }
+                }
             }
         }
         return null;
     }
 
-
-    public boolean delete012(DataPengeluaran data) {
+    public boolean delete(int data) {
         TreeNode node = search(data);
         TreeNode parent = node.getParent();
 //        TreeNode current = root;
         boolean cek = false;
-        if (node != root) {
+        if (node != null) {
             if (node.getLeftNode() == null && node.getRightNode() == null) {
                 if (parent.getLeftNode() == node) {
                     parent.setLeftNode(null);
@@ -100,8 +101,7 @@ public class Tree {
                         getRoot().setRightNode(node.getRightNode());
                     }
                     getRoot().setParent(null);
-                }
-                else if (parent.getLeftNode() == node) {
+                } else if (parent.getLeftNode() == node) {
                     if (node.getLeftNode() == null) {
                         parent.setLeftNode(node.getRightNode());
                         node.getRightNode().setParent(parent);
@@ -131,18 +131,14 @@ public class Tree {
                     }
                 }
 
-            }
-            
-
-        } else {
-                TreeNode sucessor = getSucessor(root);
-                TreeNode predesessor = getPredesessor(root);
+            } else {
+//                TreeNode parent = node.getParent();
+                TreeNode sucessor = getSucessor(node);
                 DataPengeluaran temp;
                 if (sucessor != null) {// cek Sucessor
                     if (sucessor.getRightNode() == null) {
                         if (sucessor.getParent() != node) {
                             sucessor.getParent().setLeftNode(null);
-                            sucessor.setParent(null);
                         } else {
                             node.setRightNode(null);
                         }
@@ -156,72 +152,60 @@ public class Tree {
                     sucessor = node;
                     sucessor.setData(temp);
                     return true;
-                }else if(predesessor != null){
-                    if(predesessor.getLeftNode() == null){
-                        if(predesessor.getParent()!= node){
-                            predesessor.getParent().setRightNode(null);
-                            predesessor.setParent(null);
-                        }else{
-                            node.setRightNode(null);
-                        }
-                    }else{
-                        if(predesessor.getParent() != node){
-                            predesessor.getParent().setRightNode(predesessor.getLeftNode());
-                            predesessor.getLeftNode().setParent(predesessor.getParent());
-                        }else{
-                            
-                        }
-                    }
-                    
-                    root = predesessor;
-//                    temp = predesessor.getData();
-//                    predesessor = node;
-//                    predesessor.setData(temp);
-                    return true;
-                }else {
-                    root = null;
+                } else {
                     return false;
                 }
+            }
+
         }
         return cek;
 
     }
-    
-    public void inorderTraversal() {
-        inorderHelper(root);
-    }
-    
-    private void inorderHelper(TreeNode node) {
-        if (node == null) {
-            return;
-        }
-        inorderHelper(node.getLeftNode());
-        simpDat.add(node.getData());
-        inorderHelper(node.getRightNode());
-    }
 
-    public TreeNode getSucessor(TreeNode data) {
+   public TreeNode getSucessor(TreeNode data) {
         TreeNode bantu = data.getRightNode();
-        if(bantu != null){
-            while (bantu.getLeftNode() != null) {
-                bantu = bantu.getLeftNode();
-            }
+        while (bantu.getLeftNode() != null) {
+            bantu = bantu.getLeftNode();
         }
         return bantu;
     }
-            
     
     public TreeNode getPredesessor(TreeNode data){
         TreeNode bantu = data.getLeftNode();
-        if(bantu != null){
-            while(bantu.getRightNode() != null){
-                bantu = bantu.getRightNode();
-            }
+        while(bantu.getRightNode() != null){
+            bantu = bantu.getRightNode();
         }
         return bantu;
     }
-            
-    
-    
-    
+
+    public int size() {
+        return countNodes(root);
+    }
+
+    private int countNodes(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int count = 1;
+        count += countNodes(node.getLeftNode());
+        count += countNodes(node.getRightNode());
+        return count;
+    }
+
+    public List<TreeNode> traverseInOrder() {
+        List<TreeNode> nodeList = new ArrayList<>();
+        traverseInOrder(root, nodeList);
+        return nodeList;
+    }
+
+    private void traverseInOrder(TreeNode node, List<TreeNode> nodeList) {
+        if (node == null) {
+            return;
+        }
+
+        traverseInOrder(node.getLeftNode(), nodeList);
+        nodeList.add(node);
+        traverseInOrder(node.getRightNode(), nodeList);
+    }
 }
