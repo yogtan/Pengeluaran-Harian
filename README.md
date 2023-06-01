@@ -3,11 +3,17 @@
 Ini adalah program berbasis GUI sederhana yang ditulis dalam bahasa Java untuk membantu pengguna dalam memantau pengeluaran harian mereka. Program ini menyediakan fitur untuk menginput, menghapus, mencari, dan menampilkan catatan pengeluaran harian.
 
 ## Fitur
-![Dashboard](IMAGE/ImageAwal.png)
 
+<img src="IMAGE/ImageAwal.png" alt="Deskripsi Gambar" width="400">
 - Menambahkan catatan pengeluaran baru dengan memasukkan tanggal, waktu, catatan, dan jumlah pengeluaran.
+
+<img src="IMAGE/ImagePengeluaran.png" alt="Deskripsi Gambar" width="400">
 - Menghapus catatan pengeluaran yang sudah ada berdasarkan entri yang dipilih.
+
+<img src="IMAGE/ImageCari.png" alt="Deskripsi Gambar" width="400">
 - Mencari catatan pengeluaran menggunakan kata kunci pengeluaran.
+
+<img src="IMAGE/ImageTampil.png" alt="Deskripsi Gambar" width="400">
 - Menampilkan laporan pengeluaran harian.
 
 ## Persyaratan
